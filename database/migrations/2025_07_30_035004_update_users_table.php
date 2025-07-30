@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->boolean('is_admin')->default(false);
-            $table->boolean('is_active')->default(true);
-            $table->string('username')->default('');
-            $table->string('first_name')->default('');
-            $table->string('last_name')->default('');
+            $table->boolean('is_admin')->default(false)->change();
+            $table->boolean('is_active')->default(true)->change();
+            $table->string('username')->default('')->change();
+            $table->string('first_name')->default('')->change();
+            $table->string('last_name')->default('')->change();
         });
     }
 
