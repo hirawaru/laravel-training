@@ -15,6 +15,15 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('locale', ['lang' => 'en'])" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+                        {{ __('English') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('locale', ['lang' => 'vi'])" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+                        {{ __('Vietnamese') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('locale', ['lang' => 'fr'])" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+                        {{ __('French') }}
+                    </x-nav-link>
                 </div>
             </div>
 
