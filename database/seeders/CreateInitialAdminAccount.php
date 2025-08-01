@@ -16,13 +16,12 @@ class CreateInitialAdminAccount extends Seeder
         //
         User::unguard();
         User::create([
-            'email' => 'admin@example.com',
+            'email' => 'admin5@example.com',
             'password' => bcrypt('password'),
             'is_active' => true,
             'username' => 'admin',
             'first_name' => 'Admin',
             'last_name' => 'User',
-            'name' => 'Admin User',
             'is_admin' => true,
         ]);
     }

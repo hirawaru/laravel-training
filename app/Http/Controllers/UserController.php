@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserStoreRequest;
+use Illuminate\Http\Response;
+use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
@@ -13,7 +16,9 @@ class UserController extends Controller
     public function index()
     {
         //
-        Return User::all();
+        return view('users.index', [
+            'users' => User::all()
+        ]);
     }
 
     /**
@@ -28,9 +33,13 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
         // 
+        $validatedData = $request->validated();
+        User::create($validatedData);
+
+        return redirect()->route('users.index')->with('success', 'User created successfully.'); 
     }
 
     /**
@@ -39,6 +48,9 @@ class UserController extends Controller
     public function show(User $user)
     {
         //
+        return view('users.show', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -47,14 +59,20 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
+        return view('users.edit', [
+            'user' => $user
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UserUpdateRequest $request, User $user)
     {
-        //
+        $validatedData = $request->validated();
+        $user->update($validatedData);
+
+        return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
 
     /**
@@ -63,5 +81,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+        $user->delete();
+        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
     }
 }
