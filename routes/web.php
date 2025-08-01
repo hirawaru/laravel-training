@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TestUI;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,5 +26,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('language/{lang}', [LanguageController::class, 'changeLanguage'])->name('locale');
+Route::get('/test-ui', [TestUI::class, 'index'])->middleware(['auth'])->name('test-ui');
+
 
 require __DIR__.'/auth.php';
