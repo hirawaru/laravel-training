@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Task;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,13 +22,19 @@ class DatabaseSeeder extends Seeder
         //    'name' => 'Test User',
         //    'email' => 'test@example.com',
         //]);
-        $user = new User();
-        $user->first_name = 'Test User 2';
-        $user->last_name = 'Doe';
-        $user->email = 'test2@example.com';
-        $user->password = bcrypt('password');
-        $user->is_active = true;
-        $user->is_admin = true;
-        $user->save();
+        $task = new Task();
+        $task->name = 'Test Task';
+        $task->user_id = 1;
+        $task->save();
+
+        $task2 = new Task();
+        $task2->name = 'Test Task 2';
+        $task2->user_id = 2;
+        $task2->save();
+
+        $task3 = new Task();
+        $task3->name = 'Test Task 3';
+        $task3->user_id = 3;
+        $task3->save();
     }
 }

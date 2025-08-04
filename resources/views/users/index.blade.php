@@ -19,12 +19,14 @@
                     </x-primary-button>
                 </p>
             </a>
+            {{-- @dump($users) --}}
             <table class="table">
                 <thread>
                     <tr>
                         <th class="text-gray-900 dark:text-gray-100 text-center" scope="col">#</th>
                         <th class="text-gray-900 dark:text-gray-100 text-center" scope="col">Name</th>
                         <th class="text-gray-900 dark:text-gray-100 text-center" scope="col">Username</th>
+                        <th class="text-gray-900 dark:text-gray-100 text-center" scope="col">Tasks</th>
                         <th class="text-gray-900 dark:text-gray-100 text-center" scope="col">Actions</th>
                     </tr>
                 </thread>
@@ -35,6 +37,17 @@
                             <td class="text-gray-900 dark:text-gray-100 text-center">{{ $user->fullname }}</td>
                             <td class="text-gray-900 dark:text-gray-100 text-center">{{ $user->username }}</td>
                             <td class="text-gray-900 dark:text-gray-100 text-center">
+                                @foreach($user->tasks as $task)
+                                    <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">
+                                        {{ $task->name }}
+                                    </span>
+                                @endforeach
+                                {{-- @dump($user) --}}
+                                <a href="{{ route('users.show', $user) }}">
+                                    <x-primary-button class="mt-4">
+                                        {{ __('View') }}
+                                    </x-primary-button>
+                                </a>
                                 <a href="{{ route('users.edit', $user) }}">
                                     <x-primary-button class="mt-4">
                                         {{ __('Edit') }}
